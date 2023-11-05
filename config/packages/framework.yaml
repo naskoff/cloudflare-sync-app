@@ -18,6 +18,13 @@ framework:
     php_errors:
         log: true
 
+    http_client:
+        scoped_clients:
+            # only requests matching scope will use these options
+            cloudflare.client:
+                base_uri: 'https://api.cloudflare.com/client/v4/accounts/%env(CLOUDFLARE_ACCOUNT_ID)%/'
+                auth_bearer: '%env(CLOUDFLARE_API_KEY)%'
+
 when@test:
     framework:
         test: true
